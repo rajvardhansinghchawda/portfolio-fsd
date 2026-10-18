@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#f1f5f9"/>
+
+  <!-- Left Sidebar -->
+  <rect width="210" height="675" fill="#1e3a8a"/>
+  
+  <!-- Sidebar Brand -->
+  <circle cx="45" cy="45" r="16" fill="#38bdf8"/>
+  <path d="M45 36v18M36 45h18" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <text x="75" y="50" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-weight="700" font-size="16">TRIAGE-AI</text>
+
+  <!-- Sidebar Nav -->
+  <rect x="20" y="90" width="170" height="38" rx="8" fill="#2563eb"/>
+  <circle cx="42" cy="109" r="6" fill="#ffffff"/>
+  <text x="60" y="114" fill="#ffffff" font-family="sans-serif" font-weight="600" font-size="13">Emergency Feed</text>
+
+  <circle cx="42" cy="155" r="6" fill="#93c5fd" opacity="0.6"/>
+  <text x="60" y="160" fill="#93c5fd" font-family="sans-serif" font-size="13">Triage Routing</text>
+
+  <circle cx="42" cy="201" r="6" fill="#93c5fd" opacity="0.6"/>
+  <text x="60" y="206" fill="#93c5fd" font-family="sans-serif" font-size="13">Bed Allocation</text>
+
+  <circle cx="42" cy="247" r="6" fill="#93c5fd" opacity="0.6"/>
+  <text x="60" y="252" fill="#93c5fd" font-family="sans-serif" font-size="13">Analytics &amp; AI</text>
+
+  <circle cx="42" cy="293" r="6" fill="#93c5fd" opacity="0.6"/>
+  <text x="60" y="298" fill="#93c5fd" font-family="sans-serif" font-size="13">Dispatch Map</text>
+
+  <!-- Top Bar -->
+  <rect x="210" y="0" width="990" height="65" fill="#ffffff"/>
+  <line x1="210" y1="65" x2="1200" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="245" y="38" fill="#0f172a" font-family="sans-serif" font-weight="700" font-size="18">Live Emergency Triage &amp; Hospital Routing</text>
+  <rect x="940" y="18" width="130" height="30" rx="15" fill="#fee2e2"/>
+  <circle cx="955" cy="33" r="5" fill="#ef4444"/>
+  <text x="968" y="38" fill="#b91c1c" font-family="sans-serif" font-weight="600" font-size="12">Critical Alert: Active</text>
+  <circle cx="1120" cy="33" r="16" fill="#e2e8f0"/>
+
+  <!-- Metric Cards -->
+  <!-- Card 1 -->
+  <rect x="240" y="85" width="220" height="95" rx="12" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="260" y="112" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="500">Total Inflow Today</text>
+  <text x="260" y="152" fill="#0f172a" font-family="sans-serif" font-size="28" font-weight="700">142</text>
+  <rect x="390" y="105" width="50" height="22" rx="11" fill="#dcfce7"/>
+  <text x="400" y="120" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="600">+14%</text>
+
+  <!-- Card 2 -->
+  <rect x="480" y="85" width="220" height="95" rx="12" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="500" y="112" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="500">AI Triage Speed</text>
+  <text x="500" y="152" fill="#2563eb" font-family="sans-serif" font-size="28" font-weight="700">1.8s</text>
+  <rect x="630" y="105" width="50" height="22" rx="11" fill="#eff6ff"/>
+  <text x="640" y="120" fill="#2563eb" font-family="sans-serif" font-size="11" font-weight="600">Fast</text>
+
+  <!-- Card 3 -->
+  <rect x="720" y="85" width="220" height="95" rx="12" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="740" y="112" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="500">ICU Bed Occupancy</text>
+  <text x="740" y="152" fill="#f59e0b" font-family="sans-serif" font-size="28" font-weight="700">84%</text>
+  <rect x="860" y="105" width="60" height="22" rx="11" fill="#fef3c7"/>
+  <text x="868" y="120" fill="#b45309" font-family="sans-serif" font-size="11" font-weight="600">Elevated</text>
+
+  <!-- Card 4 -->
+  <rect x="960" y="85" width="215" height="95" rx="12" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="980" y="112" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="500">Optimal Route Score</text>
+  <text x="980" y="152" fill="#10b981" font-family="sans-serif" font-size="28" font-weight="700">98.4</text>
+  <rect x="1105" y="105" width="50" height="22" rx="11" fill="#dcfce7"/>
+  <text x="1115" y="120" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="600">A+</text>
+
+  <!-- Main Content Area: Left Table, Right Chart -->
+  <!-- Left Panel: Live Emergency Queue -->
+  <rect x="240" y="200" width="570" height="445" rx="14" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="265" y="235" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="700">Incoming Patients &amp; Triage Scores</text>
+  <text x="265" y="255" fill="#64748b" font-family="sans-serif" font-size="12">AI predicted triage level based on telemetry and vitals</text>
+
+  <!-- Table Header -->
+  <rect x="265" y="275" width="520" height="32" rx="6" fill="#f8fafc"/>
+  <text x="280" y="296" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600">PATIENT ID</text>
+  <text x="380" y="296" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600">SEVERITY</text>
+  <text x="480" y="296" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600">DESTINATION</text>
+  <text x="640" y="296" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600">ETA / STATUS</text>
+
+  <!-- Row 1 -->
+  <line x1="265" y1="345" x2="785" y2="345" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="280" y="333" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="600">#EM-8821</text>
+  <rect x="380" y="318" width="65" height="22" rx="11" fill="#fee2e2"/>
+  <text x="393" y="333" fill="#b91c1c" font-family="sans-serif" font-size="11" font-weight="700">Code Red</text>
+  <text x="480" y="333" fill="#334155" font-family="sans-serif" font-size="12">Trauma ICU 2</text>
+  <rect x="640" y="318" width="85" height="22" rx="11" fill="#fef2f2"/>
+  <text x="650" y="333" fill="#dc2626" font-family="sans-serif" font-size="11" font-weight="600">3 mins ETA</text>
+
+  <!-- Row 2 -->
+  <line x1="265" y1="395" x2="785" y2="395" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="280" y="383" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="600">#EM-8824</text>
+  <rect x="380" y="368" width="75" height="22" rx="11" fill="#ffedd5"/>
+  <text x="390" y="383" fill="#c2410c" font-family="sans-serif" font-size="11" font-weight="700">Code Orange</text>
+  <text x="480" y="383" fill="#334155" font-family="sans-serif" font-size="12">Cardiac Wing</text>
+  <text x="640" y="383" fill="#64748b" font-family="sans-serif" font-size="12">7 mins ETA</text>
+
+  <!-- Row 3 -->
+  <line x1="265" y1="445" x2="785" y2="445" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="280" y="433" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="600">#EM-8827</text>
+  <rect x="380" y="418" width="75" height="22" rx="11" fill="#fef3c7"/>
+  <text x="390" y="433" fill="#b45309" font-family="sans-serif" font-size="11" font-weight="700">Code Yellow</text>
+  <text x="480" y="433" fill="#334155" font-family="sans-serif" font-size="12">General ER</text>
+  <text x="640" y="433" fill="#64748b" font-family="sans-serif" font-size="12">12 mins ETA</text>
+
+  <!-- Row 4 -->
+  <line x1="265" y1="495" x2="785" y2="495" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="280" y="483" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="600">#EM-8830</text>
+  <rect x="380" y="468" width="65" height="22" rx="11" fill="#dcfce7"/>
+  <text x="390" y="483" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="700">Code Green</text>
+  <text x="480" y="483" fill="#334155" font-family="sans-serif" font-size="12">Outpatient</text>
+  <text x="640" y="483" fill="#64748b" font-family="sans-serif" font-size="12">Arrived</text>
+
+  <!-- Right Panel: Hospital Triage & Bed Load Chart -->
+  <rect x="830" y="200" width="345" height="445" rx="14" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="855" y="235" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="700">Hospital Load Distribution</text>
+  <text x="855" y="255" fill="#64748b" font-family="sans-serif" font-size="12">Real-time capacity across 4 regional centers</text>
+
+  <!-- Bar Chart Columns -->
+  <!-- Col 1 -->
+  <rect x="870" y="420" width="35" height="150" rx="6" fill="#3b82f6"/>
+  <rect x="870" y="320" width="35" height="90" rx="6" fill="#93c5fd"/>
+  <text x="875" y="595" fill="#64748b" font-family="sans-serif" font-size="11">City Gen</text>
+
+  <!-- Col 2 -->
+  <rect x="940" y="360" width="35" height="210" rx="6" fill="#f59e0b"/>
+  <rect x="940" y="300" width="35" height="50" rx="6" fill="#fde68a"/>
+  <text x="943" y="595" fill="#64748b" font-family="sans-serif" font-size="11">Trauma Ctr</text>
+
+  <!-- Col 3 -->
+  <rect x="1010" y="440" width="35" height="130" rx="6" fill="#10b981"/>
+  <rect x="1010" y="390" width="35" height="40" rx="6" fill="#a7f3d0"/>
+  <text x="1016" y="595" fill="#64748b" font-family="sans-serif" font-size="11">Metro Med</text>
+
+  <!-- Col 4 -->
+  <rect x="1080" y="390" width="35" height="180" rx="6" fill="#6366f1"/>
+  <rect x="1080" y="330" width="35" height="50" rx="6" fill="#c7d2fe"/>
+  <text x="1086" y="595" fill="#64748b" font-family="sans-serif" font-size="11">St. Jude</text>
+</svg>
