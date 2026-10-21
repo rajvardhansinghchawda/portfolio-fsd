@@ -9,28 +9,54 @@ import {
   ArrowRight,
   ExternalLink,
   Mail,
-  MessageCircle,
-  GraduationCap,
+  Phone,
   MapPin,
+  User,
+  GraduationCap,
   Briefcase,
   Trophy,
-  Users,
   Code2,
   CheckCircle2,
-  Copy,
   Check,
   X,
-  Sparkles,
   Send,
-  Terminal,
-  Cpu,
+  Award,
+  Star,
   Layers,
-  Database,
-  Wrench,
-  Flame,
+  LayoutDashboard,
+  Calendar,
+  Users,
+  Settings,
+  Activity,
+  Clock,
+  Sparkles,
+  ArrowLeft,
 } from "lucide-react";
 
-// Brand SVG Icons
+import {
+  PythonIcon,
+  JavaIcon,
+  CppIcon,
+  DjangoIcon,
+  FastApiIcon,
+  ReactIcon,
+  NextjsIcon,
+  HtmlIcon,
+  CssIcon,
+  JavascriptIcon,
+  SqlIcon,
+  MysqlIcon,
+  MongoDbIcon,
+  GitIcon,
+  GithubBrandIcon,
+  DockerIcon,
+  PostmanIcon,
+  LinuxIcon,
+  VsCodeIcon,
+  AwsIcon,
+} from "./components/TechIcons";
+
+// Brand SVG Icons for social links
 function GithubIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -50,19 +76,27 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
   );
 }
 
+function TwitterIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    </svg>
+  );
+}
+
 interface Project {
   id: string;
   title: string;
   description: string;
   image: string;
   tags: string[];
+  allTags?: string[];
   category: string;
+  liveUrl: string;
+  githubUrl: string;
   details: {
     overview: string;
-    highlights: string[];
-    role: string;
-    github?: string;
-    live?: string;
+    features: string[];
   };
 }
 
@@ -73,20 +107,22 @@ const projectsData: Project[] = [
     description:
       "Online appointment booking, digital token generation, live queue tracking, doctor dashboard and admin console.",
     image: "/images/project_hospital.jpg",
-    tags: ["Django", "MySQL", "React", "Bootstrap"],
+    tags: ["Django", "MySQL", "React"],
+    allTags: ["Django", "Django REST", "MySQL", "React", "Bootstrap"],
     category: "Full-Stack",
+    liveUrl: "https://hospital-queue-demo.web.app",
+    githubUrl: "https://github.com/rajwardhan/smart-district-hospital",
     details: {
       overview:
-        "Engineered a scalable hospital OPD management ecosystem resolving patient crowding at district health facilities. Features automated SMS token notifications, doctor scheduling algorithms, and analytics for district medical officers.",
-      highlights: [
-        "Reduced average outpatient patient waiting time by 48%",
-        "Designed relational database schema in MySQL supporting 10,000+ daily tokens",
-        "Implemented secure JWT role-based access for Doctors, Receptionists, and Admins",
-        "Real-time token status updates with WebSocket event streaming",
+        "A complete hospital management solution to reduce crowding and improve patient experience through online appointments, digital tokens and real-time queue tracking.",
+      features: [
+        "Online appointment booking",
+        "Digital token generation",
+        "Live queue tracking with ETA",
+        "Doctor dashboard",
+        "Admin console",
+        "Supports up to 1,000 concurrent users",
       ],
-      role: "Lead Full-Stack Developer",
-      github: "https://github.com/rajwardhan/smart-district-hospital",
-      live: "https://hospital-queue-demo.web.app",
     },
   },
   {
@@ -95,20 +131,22 @@ const projectsData: Project[] = [
     description:
       "Platform to identify changes in wildlife habitats using satellite and environmental data.",
     image: "/images/project_wildlife.jpg",
-    tags: ["Python", "Geospatial", "AI/ML", "Sustainability"],
+    tags: ["Python", "Geospatial", "API"],
+    allTags: ["Python", "Geospatial", "Sentinel-2 API", "FastAPI", "Leaflet"],
     category: "AI & Geospatial",
+    liveUrl: "https://wildlife-monitor.example.com",
+    githubUrl: "https://github.com/rajwardhan/wildlife-habitat-monitor",
     details: {
       overview:
-        "Cloud-native geospatial intelligence platform integrating Sentinel-2 multispectral imagery and ground sensor telemetry to monitor deforestation, animal migration corridors, and biodiversity health in protected biospheres.",
-      highlights: [
-        "Automated NDVI calculation pipeline processing satellite GeoTIFF files",
-        "Real-time sensor telemetry processing for temperature, humidity, and animal GPS tags",
-        "Interactive GIS map visualization with custom boundary polygon filters",
-        "Early warning notification engine for habitat encroachment",
+        "Environmental satellite intelligence engine evaluating vegetative health and biosphere transitions to safeguard wildlife migration routes.",
+      features: [
+        "Multispectral satellite image processing",
+        "Normalized Difference Vegetation Index (NDVI) mapping",
+        "Automated habitat disturbance alerts",
+        "Interactive GIS boundary polygon analysis",
+        "Telemetry data aggregation with time-series charts",
+        "High-performance spatial querying backend",
       ],
-      role: "Backend & Geospatial Engineer",
-      github: "https://github.com/rajwardhan/wildlife-habitat-monitor",
-      live: "https://wildlife-monitor.example.com",
     },
   },
   {
@@ -117,35 +155,63 @@ const projectsData: Project[] = [
     description:
       "AI-based triage and routing system for emergencies. TechXcelerate 2K26 Winner.",
     image: "/images/project_triage.svg",
-    tags: ["Next.js", "FastAPI", "AI", "Python"],
+    tags: ["Next.js", "FastAPI", "AI"],
+    allTags: ["Next.js", "FastAPI", "AI", "Python", "Google Maps API"],
     category: "AI & Healthcare",
+    liveUrl: "https://emergency-triage-ai.vercel.app",
+    githubUrl: "https://github.com/rajwardhan/ai-emergency-triage",
     details: {
       overview:
-        "Emergency dispatch decision engine designed to route critical ambulances to hospitals with available trauma ICU beds and surgical teams based on AI symptom triage and live traffic congestion.",
-      highlights: [
-        "Awarded 1st Place at TechXcelerate 2K26 Hackathon",
-        "Sub-2-second AI inference recommending optimal hospital destination",
-        "Live ICU bed and ventilator availability tracker with sync hooks",
-        "Intuitive emergency operator dashboard with audible priority alarms",
+        "Emergency dispatch decision engine designed to route critical ambulances to hospitals with available trauma ICU beds based on AI symptom triage and live traffic conditions.",
+      features: [
+        "Sub-2-second AI triage and trauma score assessment",
+        "Real-time ICU and ventilator bed tracker",
+        "Optimal hospital routing factoring in live traffic",
+        "Emergency operator dispatcher interface",
+        "Audible priority alerts for Code Red emergencies",
+        "TechXcelerate 2K26 First Prize Hackathon Winner",
       ],
-      role: "System Architect & AI Backend",
-      github: "https://github.com/rajwardhan/ai-emergency-triage",
-      live: "https://emergency-triage-ai.vercel.app",
     },
   },
+];
+
+interface TechSkill {
+  name: string;
+  category: "Languages" | "Frontend" | "Backend" | "Database" | "Tools & Others";
+  icon: React.ComponentType<{ size?: number }>;
+}
+
+const techSkills: TechSkill[] = [
+  { name: "Python", category: "Languages", icon: PythonIcon },
+  { name: "Java", category: "Languages", icon: JavaIcon },
+  { name: "C / C++", category: "Languages", icon: CppIcon },
+  { name: "Django", category: "Backend", icon: DjangoIcon },
+  { name: "FastAPI", category: "Backend", icon: FastApiIcon },
+  { name: "React", category: "Frontend", icon: ReactIcon },
+  { name: "Next.js", category: "Frontend", icon: NextjsIcon },
+  { name: "HTML", category: "Frontend", icon: HtmlIcon },
+  { name: "CSS", category: "Frontend", icon: CssIcon },
+  { name: "JavaScript", category: "Languages", icon: JavascriptIcon },
+  { name: "SQL", category: "Database", icon: SqlIcon },
+  { name: "MySQL", category: "Database", icon: MysqlIcon },
+  { name: "MongoDB", category: "Database", icon: MongoDbIcon },
+  { name: "Git", category: "Tools & Others", icon: GitIcon },
+  { name: "GitHub", category: "Tools & Others", icon: GithubBrandIcon },
+  { name: "Docker", category: "Tools & Others", icon: DockerIcon },
+  { name: "Postman", category: "Tools & Others", icon: PostmanIcon },
+  { name: "Linux", category: "Tools & Others", icon: LinuxIcon },
+  { name: "VS Code", category: "Tools & Others", icon: VsCodeIcon },
+  { name: "AWS", category: "Tools & Others", icon: AwsIcon },
 ];
 
 export default function HomePage() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [activeNav, setActiveNav] = useState("Home");
-  const [codeCopied, setCodeCopied] = useState(false);
-  const [emailCopied, setEmailCopied] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [filterTag, setFilterTag] = useState<string>("All");
+  const [skillFilter, setSkillFilter] = useState<string>("All");
+  const [showcaseProject, setShowcaseProject] = useState<Project | null>(null);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  // Initialize theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
     const initialTheme = savedTheme || "light";
@@ -158,25 +224,6 @@ export default function HomePage() {
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-  };
-
-  const copyCodeSnippet = () => {
-    const code = `const rajwardhan = {
-  role: "Full-Stack Developer",
-  skills: ["Python", "Django", "Next.js"],
-  focus: "Building real-world solutions",
-  currently: "Improving and exploring new technologies",
-  goal: "To create impactful products"
-};`;
-    navigator.clipboard.writeText(code);
-    setCodeCopied(true);
-    setTimeout(() => setCodeCopied(false), 2000);
-  };
-
-  const copyEmail = () => {
-    navigator.clipboard.writeText("rajwardhan.chawda@example.com");
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
   };
 
   const handleDownloadResume = () => {
@@ -203,14 +250,13 @@ export default function HomePage() {
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
     { label: "Achievements", href: "#achievements" },
-    { label: "Skills", href: "#skills" },
     { label: "Contact", href: "#contact" },
   ];
 
-  const filteredProjects =
-    filterTag === "All"
-      ? projectsData
-      : projectsData.filter((p) => p.tags.includes(filterTag) || p.category === filterTag);
+  const filteredSkills =
+    skillFilter === "All"
+      ? techSkills
+      : techSkills.filter((s) => s.category === skillFilter || (skillFilter === "Frontend" && s.name === "JavaScript") || (skillFilter === "Backend" && (s.name === "Python" || s.name === "Java")));
 
   return (
     <>
@@ -227,22 +273,10 @@ export default function HomePage() {
           {/* Brand Logo */}
           <a href="#home" className="nav-brand" onClick={() => setActiveNav("Home")}>
             <div className="logo-badge">
-              <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" rx="22" fill="#eff6ff" />
-                <path
-                  d="M26 32h24c8.8 0 16 7.2 16 16s-7.2 16-16 16H38v14H26V32zm12 22h12c3.3 0 6-2.7 6-6s-2.7-6-6-6H38v12z"
-                  fill="#2563eb"
-                />
-                <path
-                  d="M62 50l14 28H62l-10-20 6-6 4-2z"
-                  fill="#1d4ed8"
-                />
-                <circle cx="75" cy="35" r="5" fill="#3b82f6" />
-              </svg>
+              <span style={{ fontSize: "16px", fontWeight: 800, color: "var(--accent-blue)" }}>RC</span>
             </div>
             <div className="brand-text">
               <span className="brand-name">Rajwardhan</span>
-              <span className="brand-subtitle">Full-Stack Developer</span>
             </div>
           </a>
 
@@ -279,18 +313,19 @@ export default function HomePage() {
               aria-label="Download Resume"
             >
               <span>Download Resume</span>
-              <Download size={15} />
             </button>
           </div>
         </nav>
       </header>
 
-      {/* Main Page Container */}
-      <main className="container" id="home">
-        {/* HERO SECTION */}
-        <section className="hero-section">
+      {/* Main Content Sections */}
+      <main className="container">
+        {/* ========================================================================= */}
+        {/* SECTION 1: HERO SECTION (Top Left in Reference)                           */}
+        {/* ========================================================================= */}
+        <section className="hero-section" id="home">
           <div className="hero-grid">
-            {/* Left Content */}
+            {/* Left Column */}
             <div className="hero-left">
               <div className="status-badge">
                 <span className="status-dot" />
@@ -299,7 +334,9 @@ export default function HomePage() {
 
               <h1 className="hero-title">
                 Hi, I’m
-                <span className="highlight-blue">Rajwardhan</span>
+                <span className="highlight-blue" style={{ display: "block" }}>
+                  Rajwardhan
+                </span>
                 Singh Chawda
               </h1>
 
@@ -309,11 +346,11 @@ export default function HomePage() {
 
               <p className="hero-bio">
                 I build real-world web applications that solve practical problems.
-                I enjoy working with Python, Django, Next.js and modern technologies
+                I love working with Python, Django, Next.js and modern technologies
                 to create scalable and impactful solutions.
               </p>
 
-              {/* CTAs */}
+              {/* CTA Buttons */}
               <div className="hero-cta-group">
                 <a href="#projects" className="btn-primary" onClick={() => setActiveNav("Projects")}>
                   <span>View My Work</span>
@@ -321,15 +358,15 @@ export default function HomePage() {
                 </a>
 
                 <button className="btn-secondary" onClick={handleDownloadResume}>
-                  <Download size={16} />
                   <span>Download Resume</span>
+                  <Download size={16} />
                 </button>
               </div>
 
-              {/* Social Links */}
+              {/* Social Icons */}
               <div className="social-links">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/rajwardhan-chawda"
                   target="_blank"
                   rel="noreferrer"
                   className="social-icon-btn"
@@ -339,7 +376,7 @@ export default function HomePage() {
                   <GithubIcon size={18} />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/rajwardhan-chawda"
                   target="_blank"
                   rel="noreferrer"
                   className="social-icon-btn"
@@ -348,36 +385,35 @@ export default function HomePage() {
                 >
                   <LinkedinIcon size={18} />
                 </a>
-                <button
-                  onClick={copyEmail}
-                  className="social-icon-btn"
-                  aria-label="Copy Email"
-                  title={emailCopied ? "Email Copied!" : "Send Email"}
-                >
-                  {emailCopied ? <Check size={18} color="#10b981" /> : <Mail size={18} />}
-                </button>
                 <a
-                  href="https://wa.me/919999999999"
+                  href="https://twitter.com"
                   target="_blank"
                   rel="noreferrer"
                   className="social-icon-btn"
-                  aria-label="WhatsApp Contact"
-                  title="Chat on WhatsApp"
+                  aria-label="Twitter Profile"
+                  title="Twitter / X"
                 >
-                  <MessageCircle size={18} />
+                  <TwitterIcon size={18} />
+                </a>
+                <a
+                  href="mailto:rajwardhan.chawda@example.com"
+                  className="social-icon-btn"
+                  aria-label="Email Me"
+                  title="Send Email"
+                >
+                  <Mail size={18} />
                 </a>
               </div>
             </div>
 
-            {/* Center & Right Visual Area */}
+            {/* Right Column: Portrait Visual Area with concentric halo & doodle */}
             <div className="hero-visual-area">
-              {/* Concentric Halo Background Circles */}
               <div className="halo-backdrop" />
               <div className="orbital-ring orbital-ring-1" />
               <div className="orbital-ring orbital-ring-2" />
               <div className="orbital-ring orbital-ring-3" />
 
-              {/* Handwritten Doodle Annotation: Build Learn Improve Repeat */}
+              {/* Doodle annotation: Build Learn Improve Repeat */}
               <div className="doodle-annotation-top">
                 <div className="doodle-words">
                   <div>Build</div>
@@ -385,7 +421,6 @@ export default function HomePage() {
                   <div>Improve</div>
                   <div>Repeat</div>
                 </div>
-                {/* Hand-drawn curved arrow SVG */}
                 <svg className="doodle-arrow-svg" viewBox="0 0 60 50" fill="none">
                   <path
                     d="M38 4 C 48 18, 30 32, 14 36"
@@ -417,244 +452,365 @@ export default function HomePage() {
                   />
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              {/* Floating Stat Card 1: 6+ Months Experience */}
-              <div className="floating-stat-card card-experience">
-                <div className="stat-icon-box">
-                  <Briefcase size={20} />
-                </div>
-                <div className="stat-details">
-                  <span className="stat-number">6+</span>
-                  <span className="stat-label">
-                    Months<br />Internship Experience
-                  </span>
-                </div>
-              </div>
+        {/* ========================================================================= */}
+        {/* SECTION 2: ABOUT ME (Top Center in Reference)                             */}
+        {/* ========================================================================= */}
+        <section className="about-section" id="about">
+          <div className="section-pill">About Me</div>
+          <div className="about-grid">
+            {/* Left Column: Text and 2x2 Info Cards */}
+            <div>
+              <h2 className="section-title">
+                Building Real Solutions with Code
+              </h2>
+              <p className="about-bio-text">
+                I&apos;m Rajwardhan Singh Chawda, a Computer Science student at PIEMR with a passion
+                for full-stack development and problem solving. I enjoy working on backend systems,
+                APIs and modern web applications. I&apos;m always eager to learn new technologies and
+                contribute to impactful projects.
+              </p>
 
-              {/* Floating Stat Card 2: 5+ Major Projects */}
-              <div className="floating-stat-card card-projects">
-                <div className="stat-icon-box">
-                  <Code2 size={20} />
-                </div>
-                <div className="stat-details">
-                  <span className="stat-number">5+</span>
-                  <span className="stat-label">Major Projects</span>
-                </div>
-              </div>
-
-              {/* Terminal Code Window Mockup */}
-              <div className="terminal-window-wrapper">
-                <div className="terminal-box">
-                  <div className="terminal-header">
-                    <div className="terminal-dots">
-                      <span className="terminal-dot dot-red" />
-                      <span className="terminal-dot dot-yellow" />
-                      <span className="terminal-dot dot-green" />
-                    </div>
-                    <div className="terminal-title">Currently Working On...</div>
-                    <button
-                      onClick={copyCodeSnippet}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        color: "#9ca3af",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                      title="Copy code snippet"
-                    >
-                      {codeCopied ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
-                    </button>
+              {/* 2x2 Info Cards Grid */}
+              <div className="about-info-grid">
+                {/* Card 1: Name */}
+                <div className="about-info-card">
+                  <div className="about-info-icon">
+                    <User size={20} />
                   </div>
-                  <div className="terminal-body">
-                    <div className="code-line">
-                      <span className="line-no">1</span>
-                      <span className="code-text">
-                        <span className="kw-const">const</span> rajwardhan = {"{"}
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">2</span>
-                      <span className="code-text">
-                        {"  "}<span className="kw-key">role:</span> <span className="kw-val-str">&quot;Full-Stack Developer&quot;</span>,
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">3</span>
-                      <span className="code-text">
-                        {"  "}<span className="kw-key">skills:</span> [<span className="kw-val-str">&quot;Python&quot;</span>, <span className="kw-val-str">&quot;Django&quot;</span>, <span className="kw-val-str">&quot;Next.js&quot;</span>],
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">4</span>
-                      <span className="code-text">
-                        {"  "}<span className="kw-key">focus:</span> <span className="kw-val-str">&quot;Building real-world solutions&quot;</span>,
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">6</span>
-                      <span className="code-text">
-                        {"  "}<span className="kw-key">currently:</span> <span className="kw-val-str">&quot;Improving and exploring new</span>
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">7</span>
-                      <span className="code-text">
-                        {"             "}<span className="kw-val-str">technologies&quot;</span>,
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">18</span>
-                      <span className="code-text">
-                        {"  "}<span className="kw-key">goal:</span> <span className="kw-val-str">&quot;To create impactful products&quot;</span>
-                      </span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-no">19</span>
-                      <span className="code-text">{"}"};</span>
-                    </div>
+                  <div>
+                    <div className="about-info-label">Name</div>
+                    <div className="about-info-val">Rajwardhan Singh Chawda</div>
                   </div>
                 </div>
 
-                {/* Hand-drawn Quote 2 below terminal */}
-                <div className="doodle-quote-bottom">
-                  <div className="quote-text">&quot;Turning Ideas into Real Solutions&quot;</div>
-                  <svg className="quote-underline-svg" viewBox="0 0 160 14" fill="none">
-                    <path
-                      d="M4 8 C 45 2, 115 2, 155 7"
-                      stroke="#2563eb"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M20 12 C 60 7, 120 7, 145 11"
-                      stroke="#3b82f6"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      opacity="0.7"
-                    />
-                  </svg>
+                {/* Card 2: Education */}
+                <div className="about-info-card">
+                  <div className="about-info-icon">
+                    <GraduationCap size={20} />
+                  </div>
+                  <div>
+                    <div className="about-info-label">Education</div>
+                    <div className="about-info-val">B.Tech CSE, PIEMR (2023-2027)</div>
+                  </div>
                 </div>
+
+                {/* Card 3: Location */}
+                <div className="about-info-card">
+                  <div className="about-info-icon">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <div className="about-info-label">Location</div>
+                    <div className="about-info-val">Indore, Madhya Pradesh</div>
+                  </div>
+                </div>
+
+                {/* Card 4: Focus */}
+                <div className="about-info-card">
+                  <div className="about-info-icon">
+                    <Layers size={20} />
+                  </div>
+                  <div>
+                    <div className="about-info-label">Focus</div>
+                    <div className="about-info-val">Backend Development &amp; System Design</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Photo Frame with handwritten annotation */}
+            <div className="about-photo-wrapper">
+              <div className="about-photo-frame">
+                <Image
+                  src="/images/portrait.jpg"
+                  alt="Rajwardhan Singh Chawda working in tech"
+                  width={380}
+                  height={380}
+                  className="about-frame-img"
+                />
+              </div>
+              <div className="about-doodle-text">
+                <span>A better version everyday !</span>
+                <svg width="40" height="20" viewBox="0 0 60 24" fill="none">
+                  <path
+                    d="M4 14 C 20 6, 40 6, 56 16"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M44 18 L 56 16 L 50 8"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
             </div>
           </div>
         </section>
 
-        {/* QUICK INFO / STATS BANNER */}
-        <section className="stats-banner-wrapper">
-          <div className="stats-banner">
-            {/* Item 1 */}
-            <div className="info-item">
-              <div className="info-icon-circle">
-                <GraduationCap size={22} />
-              </div>
-              <div className="info-text-group">
-                <span className="info-title">B.Tech CSE</span>
-                <span className="info-subtitle">PIEMR (2023–2027)</span>
-              </div>
-            </div>
+        {/* ========================================================================= */}
+        {/* SECTION 3: SKILLS & TECHNOLOGIES (Top Right in Reference)                 */}
+        {/* ========================================================================= */}
+        <section className="skills-section" id="skills">
+          <div className="section-pill">Tech Stack</div>
+          <h2 className="section-title">Skills &amp; Technologies</h2>
+          <p className="section-subtitle">
+            Technologies I work with and continuously improve.
+          </p>
 
-            {/* Item 2 */}
-            <div className="info-item">
-              <div className="info-icon-circle">
-                <MapPin size={22} />
-              </div>
-              <div className="info-text-group">
-                <span className="info-title">Indore,</span>
-                <span className="info-subtitle">Madhya Pradesh</span>
-              </div>
-            </div>
+          {/* Filter Tabs */}
+          <div className="skills-filter-row">
+            {["All", "Languages", "Frontend", "Backend", "Database", "Tools & Others"].map(
+              (category) => (
+                <button
+                  key={category}
+                  className={`skills-filter-btn ${skillFilter === category ? "active" : ""}`}
+                  onClick={() => setSkillFilter(category)}
+                >
+                  {category}
+                </button>
+              )
+            )}
+          </div>
 
-            {/* Item 3 */}
-            <div className="info-item">
-              <div className="info-icon-circle">
-                <Briefcase size={22} />
-              </div>
-              <div className="info-text-group">
-                <span className="info-title">Software Engineer Intern</span>
-                <span className="info-subtitle">Zangoh (Newzera Tech Labs)</span>
-              </div>
-            </div>
-
-            {/* Item 4 */}
-            <div className="info-item">
-              <div className="info-icon-circle">
-                <Trophy size={22} />
-              </div>
-              <div className="info-text-group">
-                <span className="info-title">Hackathon Winner</span>
-                <span className="info-subtitle">CODEपौष 2026 &amp; more</span>
-              </div>
-            </div>
-
-            {/* Item 5 */}
-            <div className="info-item">
-              <div className="info-icon-circle">
-                <Users size={22} />
-              </div>
-              <div className="info-text-group">
-                <span className="info-title">Vice President</span>
-                <span className="info-subtitle">DevHub Club, PIEMR</span>
-              </div>
-            </div>
+          {/* 20 Skill Cards Grid */}
+          <div className="tech-cards-grid">
+            {filteredSkills.map((skill) => {
+              const IconComp = skill.icon;
+              return (
+                <div key={skill.name} className="tech-skill-card">
+                  <div className="tech-icon-wrapper">
+                    <IconComp size={38} />
+                  </div>
+                  <span className="tech-skill-name">{skill.name}</span>
+                </div>
+              );
+            })}
           </div>
         </section>
 
-        {/* FEATURED PROJECTS SECTION */}
+        {/* ========================================================================= */}
+        {/* SECTION 4 & 5: FEATURED PROJECTS & PROJECT SHOWCASE VIEW                 */}
+        {/* ========================================================================= */}
         <section className="featured-section" id="projects">
           <div className="section-header-row">
             <div>
-              <div className="section-label-badge">Featured Projects</div>
-              <h2 className="section-heading">
-                Featured <span className="heading-blue">Projects</span>
-              </h2>
-              <p className="section-subheading">
-                A showcase of my recent work and real-world solutions.
+              <div className="section-pill">Featured Projects</div>
+              <h2 className="section-title">Some of My Best Work</h2>
+              <p className="section-subtitle" style={{ marginBottom: 0 }}>
+                A showcase of my recent projects and real-world solutions.
               </p>
             </div>
 
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <button
-                className={`view-all-btn ${filterTag === "All" ? "active" : ""}`}
-                onClick={() => setFilterTag("All")}
-              >
-                <span>View All Projects</span>
-                <ArrowRight size={15} />
-              </button>
-            </div>
+            <button
+              className="view-all-btn"
+              onClick={() => {
+                if (showcaseProject) {
+                  setShowcaseProject(null);
+                } else {
+                  setShowcaseProject(projectsData[0]);
+                }
+              }}
+            >
+              <span>{showcaseProject ? "Show All Projects" : "View Project Details"}</span>
+              <ArrowRight size={15} />
+            </button>
           </div>
 
-          {/* Project Cards Grid */}
-          <div className="projects-grid">
-            {filteredProjects.map((project) => (
-              <article
-                key={project.id}
-                className="project-card"
-                onClick={() => setSelectedProject(project)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") setSelectedProject(project);
-                }}
+          {/* If Showcase View is Active (Screen 5 replica) */}
+          {showcaseProject ? (
+            <div className="project-showcase-container">
+              {/* Back button */}
+              <button
+                className="back-to-projects-btn"
+                onClick={() => setShowcaseProject(null)}
               >
-                <div className="project-img-container">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={600}
-                    height={340}
-                    className="project-thumbnail"
-                  />
-                  <div className="project-overlay" />
+                <ArrowLeft size={16} />
+                <span>Back to Projects</span>
+              </button>
+
+              {/* Title & Action Buttons Row */}
+              <div className="showcase-header-row">
+                <h3 className="showcase-title">{showcaseProject.title}</h3>
+                <div className="showcase-action-btns">
+                  <a
+                    href={showcaseProject.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-showcase-demo"
+                  >
+                    <span>Live Demo</span>
+                    <ExternalLink size={15} />
+                  </a>
+                  <a
+                    href={showcaseProject.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-showcase-github"
+                  >
+                    <GithubIcon size={16} />
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Tags Row */}
+              <div className="showcase-tags-row">
+                {(showcaseProject.allTags || showcaseProject.tags).map((tag) => (
+                  <span key={tag} className="tag-badge">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* 2-Column Split: Hospital Dashboard Mockup on Left + Details on Right */}
+              <div className="showcase-2col-layout">
+                {/* Left: Interactive Hospital Dashboard Mockup */}
+                <div className="hospital-dashboard-mockup">
+                  {/* Left Sidebar */}
+                  <div className="mockup-sidebar">
+                    <div className="mockup-sidebar-icon active" title="Dashboard">
+                      <LayoutDashboard size={18} />
+                    </div>
+                    <div className="mockup-sidebar-icon" title="Appointments">
+                      <Calendar size={18} />
+                    </div>
+                    <div className="mockup-sidebar-icon" title="Live Queue">
+                      <Clock size={18} />
+                    </div>
+                    <div className="mockup-sidebar-icon" title="Doctors">
+                      <Users size={18} />
+                    </div>
+                    <div className="mockup-sidebar-icon" title="Settings">
+                      <Settings size={18} />
+                    </div>
+                  </div>
+
+                  {/* Main Mockup Area */}
+                  <div className="mockup-content">
+                    {/* 4 Stat Cards */}
+                    <div className="mockup-stats-grid">
+                      <div className="mockup-stat-card">
+                        <div className="mockup-stat-number" style={{ color: "#f97316" }}>
+                          126
+                        </div>
+                        <div className="mockup-stat-label">Today&apos;s Appointments</div>
+                      </div>
+                      <div className="mockup-stat-card">
+                        <div className="mockup-stat-number" style={{ color: "#14b8a6" }}>
+                          18
+                        </div>
+                        <div className="mockup-stat-label">In Queue</div>
+                      </div>
+                      <div className="mockup-stat-card">
+                        <div className="mockup-stat-number" style={{ color: "#a855f7" }}>
+                          3/12
+                        </div>
+                        <div className="mockup-stat-label">Doctors</div>
+                      </div>
+                      <div className="mockup-stat-card">
+                        <div className="mockup-stat-number" style={{ color: "#ef4444" }}>
+                          6
+                        </div>
+                        <div className="mockup-stat-label">Departments</div>
+                      </div>
+                    </div>
+
+                    {/* Table Box */}
+                    <div className="mockup-table-box">
+                      <div className="mockup-table-title">Today&apos;s Appointments</div>
+                      <table className="mockup-table">
+                        <thead>
+                          <tr>
+                            <th>Token / Patient</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>#101 - Rajesh Sharma</td>
+                            <td>General Medicine</td>
+                            <td>
+                              <span className="status-badge-mini status-confirmed">Confirmed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>#102 - Priya Patel</td>
+                            <td>Pediatrics</td>
+                            <td>
+                              <span className="status-badge-mini status-consultation">In-Consultation</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>#103 - Amit Verma</td>
+                            <td>Orthopedics</td>
+                            <td>
+                              <span className="status-badge-mini status-waiting">Waiting</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>#104 - Sunita Jain</td>
+                            <td>Cardiology</td>
+                            <td>
+                              <span className="status-badge-mini status-waiting">Waiting</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
+                {/* Right: Overview & Key Features Checklist */}
+                <div className="showcase-info-col">
+                  <h4 className="showcase-block-title">Project Overview</h4>
+                  <p className="showcase-overview-text">
+                    {showcaseProject.details.overview}
+                  </p>
 
-                  <div className="project-footer">
-                    <div className="tags-list">
+                  <h4 className="showcase-block-title">Key Features</h4>
+                  <ul className="showcase-features-list">
+                    {showcaseProject.details.features.map((feature, idx) => (
+                      <li key={idx} className="showcase-feature-item">
+                        <CheckCircle2 size={18} className="feature-check-icon" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* 3 Project Cards Grid (Screen 4 replica) */
+            <div className="projects-grid">
+              {projectsData.map((project) => (
+                <article
+                  key={project.id}
+                  className="project-card"
+                  onClick={() => setShowcaseProject(project)}
+                >
+                  <div className="project-img-container">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={600}
+                      height={340}
+                      className="project-thumbnail"
+                    />
+                    <div className="project-overlay" />
+                  </div>
+
+                  <div className="project-content">
+                    {/* Tags */}
+                    <div className="tags-list" style={{ marginBottom: "10px" }}>
                       {project.tags.map((tag) => (
                         <span key={tag} className="tag-badge">
                           {tag}
@@ -662,573 +818,441 @@ export default function HomePage() {
                       ))}
                     </div>
 
-                    <div className="card-action-btn" title="View Project Details">
-                      <ArrowRight size={17} />
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+
+                    {/* Action buttons */}
+                    <div className="project-card-btn-group" onClick={(e) => e.stopPropagation()}>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-demo-link"
+                      >
+                        <span>Live Demo</span>
+                        <ArrowRight size={13} />
+                      </a>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-github-link"
+                        title="GitHub Repository"
+                      >
+                        <GithubIcon size={15} />
+                      </a>
                     </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                </article>
+              ))}
+            </div>
+          )}
         </section>
 
-        {/* ABOUT SECTION */}
-        <section className="content-section" id="about">
-          <div className="section-label-badge">About Me</div>
-          <h2 className="section-heading">
-            Engineering Systems with <span className="heading-blue">Impact &amp; Precision</span>
-          </h2>
-          <p className="section-subheading" style={{ maxWidth: "780px", marginBottom: "32px" }}>
-            I am a B.Tech Computer Science student at Prestige Institute of Engineering
-            Management &amp; Research (PIEMR), Indore. My passion lies in architecting backend
-            services, scalable database models, and building high-performance web products that
-            solve day-to-day problems.
+        {/* ========================================================================= */}
+        {/* SECTION 6: WORK EXPERIENCE (Middle Right in Reference)                    */}
+        {/* ========================================================================= */}
+        <section className="experience-section" id="experience">
+          <div className="section-pill">Work Experience</div>
+          <h2 className="section-title">My Experience</h2>
+          <p className="section-subtitle">
+            My professional journey and key contributions.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "20px",
-            }}
-          >
-            <div className="skill-category-card">
-              <div className="skill-category-title">
-                <Cpu size={20} color="#2563eb" />
-                <span>Backend Architecture</span>
-              </div>
-              <p style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Developing robust APIs and microservices using Python, Django REST framework,
-                and FastAPI with clean architectural patterns.
-              </p>
+          <div className="experience-timeline-container">
+            {/* Left Date Column */}
+            <div className="experience-date-col">
+              <div className="experience-period-text">Jun 2026 - Present</div>
+              <div className="experience-duration-text">(6 Months)</div>
             </div>
 
-            <div className="skill-category-card">
-              <div className="skill-category-title">
-                <Layers size={20} color="#2563eb" />
-                <span>Full-Stack Integration</span>
-              </div>
-              <p style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Bridging backend logic with responsive, animated React and Next.js interfaces
-                engineered for seamless user experience.
-              </p>
+            {/* Middle Timeline Line & Node */}
+            <div className="experience-line-col">
+              <div className="experience-node-dot" />
+              <div className="experience-track-line" />
             </div>
 
-            <div className="skill-category-card">
-              <div className="skill-category-title">
-                <Database size={20} color="#2563eb" />
-                <span>Database Design</span>
-              </div>
-              <p style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Optimizing relational schemas (PostgreSQL, MySQL), indexing strategies, and
-                caching layers with Redis for high-throughput queries.
-              </p>
-            </div>
+            {/* Right Card Column */}
+            <div className="experience-card-col">
+              <div className="experience-detail-card">
+                <h3 className="experience-role-title">Software Engineer Intern - Full Stack</h3>
+                <a
+                  href="https://zangoh.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="experience-company-title"
+                >
+                  Zangoh (Newzera Tech Labs Pvt. Ltd.)
+                </a>
 
-            <div className="skill-category-card">
-              <div className="skill-category-title">
-                <Users size={20} color="#2563eb" />
-                <span>Leadership &amp; Community</span>
-              </div>
-              <p style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Serving as Vice President of DevHub Club PIEMR, organizing coding workshops,
-                mentoring junior developers, and leading hackathon squads.
-              </p>
-            </div>
-          </div>
-        </section>
+                <ul className="experience-bullet-list">
+                  <li className="experience-bullet-item">
+                    Worked on Nexus platform using Next.js and modern web technologies.
+                  </li>
+                  <li className="experience-bullet-item">
+                    Implemented features like tender chatbot, document generation and dashboard modules.
+                  </li>
+                  <li className="experience-bullet-item">
+                    Collaborated with the team using agile workflow and contributed to multiple sprints.
+                  </li>
+                  <li className="experience-bullet-item">
+                    Worked on responsive UI, API integration and frontend improvements.
+                  </li>
+                </ul>
 
-        {/* EXPERIENCE & EDUCATION SECTION */}
-        <section className="content-section" id="experience">
-          <div className="section-label-badge">Journey &amp; Roles</div>
-          <h2 className="section-heading">
-            Experience &amp; <span className="heading-blue">Education</span>
-          </h2>
-          <p className="section-subheading">
-            Practical experience gained through industry internships, leadership, and university studies.
-          </p>
-
-          <div className="timeline">
-            {/* Experience Item 1 */}
-            <div className="timeline-item">
-              <div className="timeline-dot-wrapper">
-                <div className="timeline-dot" />
-                <div className="timeline-line" />
-              </div>
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3 className="timeline-role">Software Engineer Intern</h3>
-                  <span className="timeline-period">2025 - 2026 (6+ Months)</span>
+                {/* Tech tags */}
+                <div className="experience-tech-tags">
+                  {["Next.js", "React", "FastAPI", "Docker", "Git", "Agile"].map((tech) => (
+                    <span key={tech} className="tag-badge">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-                <div className="timeline-company">Zangoh (Newzera Tech Labs) • Indore, MP</div>
-                <p className="timeline-desc">
-                  Collaborated on enterprise backend services and product development. Authored
-                  modular RESTful endpoints in Python, optimized database query execution plans,
-                  and integrated testing suites ensuring 99.5% uptime.
-                </p>
-              </div>
-            </div>
-
-            {/* Experience Item 2 */}
-            <div className="timeline-item">
-              <div className="timeline-dot-wrapper">
-                <div className="timeline-dot" />
-                <div className="timeline-line" />
-              </div>
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3 className="timeline-role">Vice President</h3>
-                  <span className="timeline-period">2024 - Present</span>
-                </div>
-                <div className="timeline-company">DevHub Club, PIEMR</div>
-                <p className="timeline-desc">
-                  Directing developer community initiatives, hosting collegiate hackathons,
-                  conducting technical bootcamps on full-stack development and Git workflows,
-                  mentoring over 200+ engineering students.
-                </p>
-              </div>
-            </div>
-
-            {/* Experience Item 3 */}
-            <div className="timeline-item">
-              <div className="timeline-dot-wrapper">
-                <div className="timeline-dot" />
-              </div>
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <h3 className="timeline-role">B.Tech in Computer Science &amp; Engineering</h3>
-                  <span className="timeline-period">2023 - 2027</span>
-                </div>
-                <div className="timeline-company">
-                  Prestige Institute of Engineering Management &amp; Research (PIEMR), Indore
-                </div>
-                <p className="timeline-desc">
-                  Focusing on Data Structures &amp; Algorithms, Object-Oriented System Design,
-                  Database Management Systems, Computer Networks, and Cloud Computing.
-                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ACHIEVEMENTS & HACKATHONS */}
-        <section className="content-section" id="achievements">
-          <div className="section-label-badge">Recognitions</div>
-          <h2 className="section-heading">
-            Key <span className="heading-blue">Achievements</span> &amp; Awards
-          </h2>
-          <p className="section-subheading">
-            Milestones and competitive programming competitions won.
+        {/* ========================================================================= */}
+        {/* SECTION 7: ACHIEVEMENTS & RECOGNITIONS (Bottom Left in Reference)          */}
+        {/* ========================================================================= */}
+        <section className="achievements-section" id="achievements">
+          <div className="section-pill">Achievements</div>
+          <h2 className="section-title">Awards &amp; Recognitions</h2>
+          <p className="section-subtitle">
+            Some of my key achievements and milestones.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "20px",
-              marginTop: "28px",
-            }}
-          >
-            <div className="skill-category-card">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <div className="info-icon-circle">
+          {/* Top 4 Big Cards with Trophies */}
+          <div className="achievements-top-grid">
+            {/* Card 1 */}
+            <div className="achievement-card">
+              <div className="achievement-trophy-icon">
+                <Trophy size={24} />
+              </div>
+              <div className="achievement-rank">Second Prize</div>
+              <div className="achievement-event-title">CODEकीर्ति 2026</div>
+              <div className="achievement-detail-text">
+                Wildlife Habitat Monitoring System (Sustainability Theme)
+              </div>
+              <div className="achievement-date">Sept 2026</div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="achievement-card">
+              <div className="achievement-trophy-icon">
+                <Trophy size={24} />
+              </div>
+              <div className="achievement-rank">First Prize</div>
+              <div className="achievement-event-title">TechXcelerate 2K26</div>
+              <div className="achievement-detail-text">
+                AI-Powered Emergency Triage &amp; Hospital Routing System
+              </div>
+              <div className="achievement-date">May 2026</div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="achievement-card">
+              <div className="achievement-trophy-icon">
+                <Trophy size={24} />
+              </div>
+              <div className="achievement-rank">Top 8</div>
+              <div className="achievement-event-title">BGI Hackathon</div>
+              <div className="achievement-detail-text">
+                Among top 8 teams in BGI Hackathon
+              </div>
+              <div className="achievement-date">May 2026</div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="achievement-card">
+              <div className="achievement-trophy-icon">
+                <Trophy size={24} />
+              </div>
+              <div className="achievement-rank">First Prize</div>
+              <div className="achievement-event-title">Project Exhibition</div>
+              <div className="achievement-detail-text">
+                Project exhibition winner at PIEMR
+              </div>
+              <div className="achievement-date">May 2026</div>
+            </div>
+          </div>
+
+          {/* Bottom 3 Cards */}
+          <div className="achievements-bottom-grid">
+            <div className="achievement-horizontal-card">
+              <div className="achievement-badge-icon">
+                <User size={22} />
+              </div>
+              <div>
+                <div className="achievement-badge-title">Vice President</div>
+                <div className="achievement-badge-desc">DevHub Club PIEMR</div>
+              </div>
+            </div>
+
+            <div className="achievement-horizontal-card">
+              <div className="achievement-badge-icon">
+                <Award size={22} />
+              </div>
+              <div>
+                <div className="achievement-badge-title">SIH 2026</div>
+                <div className="achievement-badge-desc">Internal Round (Top 1) - Microplastic Detector (Hardware)</div>
+              </div>
+            </div>
+
+            <div className="achievement-horizontal-card">
+              <div className="achievement-badge-icon">
+                <Star size={22} />
+              </div>
+              <div>
+                <div className="achievement-badge-title">Multiple Hackathons</div>
+                <div className="achievement-badge-desc">Unjustav, Ideathon, HackXcelerate and more</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 8: EDUCATION & TIMELINE (Bottom Center in Reference)              */}
+        {/* ========================================================================= */}
+        <section className="education-section">
+          <div className="section-pill">Education &amp; Journey</div>
+          <h2 className="section-title">Education &amp; Timeline</h2>
+          <p className="section-subtitle">
+            My academic journey and important milestones.
+          </p>
+
+          <div className="edu-timeline-wrapper">
+            {/* Timeline Item 1 */}
+            <div className="edu-timeline-item">
+              <div className="edu-timeline-year">2023 - 2027</div>
+              <div className="edu-timeline-icon-col">
+                <div className="edu-circle-badge edu-circle-blue">
+                  <GraduationCap size={20} />
+                </div>
+                <div className="edu-timeline-connector" />
+              </div>
+              <div className="edu-timeline-content">
+                <h3 className="edu-card-title">B.Tech in Computer Science &amp; Engineering</h3>
+                <div className="edu-card-subtitle">
+                  Prestige Institute of Engineering Management &amp; Research (PIEMR)
+                </div>
+                <div className="edu-card-desc">CGPA: -</div>
+              </div>
+            </div>
+
+            {/* Timeline Item 2 */}
+            <div className="edu-timeline-item">
+              <div className="edu-timeline-year">2026</div>
+              <div className="edu-timeline-icon-col">
+                <div className="edu-circle-badge edu-circle-blue">
+                  <Briefcase size={20} />
+                </div>
+                <div className="edu-timeline-connector" />
+              </div>
+              <div className="edu-timeline-content">
+                <h3 className="edu-card-title">Full-Stack Intern</h3>
+                <div className="edu-card-subtitle">Zangoh (Newzera Tech Labs)</div>
+                <div className="edu-card-desc">
+                  Working on real-world web applications using Next.js, FastAPI and modern tools.
+                </div>
+              </div>
+            </div>
+
+            {/* Timeline Item 3 */}
+            <div className="edu-timeline-item">
+              <div className="edu-timeline-year">2026</div>
+              <div className="edu-timeline-icon-col">
+                <div className="edu-circle-badge edu-circle-orange">
                   <Trophy size={20} />
                 </div>
-                <div>
-                  <h4 style={{ fontSize: "16px", fontWeight: 700 }}>Winner — CODEपौष 2026</h4>
-                  <span style={{ fontSize: "12px", color: "var(--accent-blue)", fontWeight: 600 }}>State-level Hackathon</span>
+                <div className="edu-timeline-connector" />
+              </div>
+              <div className="edu-timeline-content">
+                <h3 className="edu-card-title">CODEकीर्ति 2026</h3>
+                <div className="edu-card-subtitle">Second Prize - Wildlife Habitat Monitoring System</div>
+                <div className="edu-card-desc">Sustainability Theme</div>
+              </div>
+            </div>
+
+            {/* Timeline Item 4 */}
+            <div className="edu-timeline-item">
+              <div className="edu-timeline-year">2026</div>
+              <div className="edu-timeline-icon-col">
+                <div className="edu-circle-badge edu-circle-gold">
+                  <Trophy size={20} />
                 </div>
               </div>
-              <p style={{ fontSize: "13.5px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Bagged 1st prize for building an automated public governance and complaint
-                routing platform under 36 hours.
-              </p>
-            </div>
-
-            <div className="skill-category-card">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <div className="info-icon-circle">
-                  <Flame size={20} />
+              <div className="edu-timeline-content">
+                <h3 className="edu-card-title">TechXcelerate 2K26</h3>
+                <div className="edu-card-subtitle">
+                  First Prize - AI-Powered Emergency Triage &amp; Hospital Routing System
                 </div>
-                <div>
-                  <h4 style={{ fontSize: "16px", fontWeight: 700 }}>Winner — TechXcelerate 2K26</h4>
-                  <span style={{ fontSize: "12px", color: "var(--accent-blue)", fontWeight: 600 }}>Healthcare AI Track</span>
-                </div>
-              </div>
-              <p style={{ fontSize: "13.5px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Honored for the AI-Powered Emergency Triage &amp; Hospital Routing prototype,
-                judged by hospital directors and industry tech architects.
-              </p>
-            </div>
-
-            <div className="skill-category-card">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <div className="info-icon-circle">
-                  <Sparkles size={20} />
-                </div>
-                <div>
-                  <h4 style={{ fontSize: "16px", fontWeight: 700 }}>5+ Major Production Projects</h4>
-                  <span style={{ fontSize: "12px", color: "var(--accent-blue)", fontWeight: 600 }}>Real-world Impact</span>
-                </div>
-              </div>
-              <p style={{ fontSize: "13.5px", color: "var(--text-muted)", lineHeight: 1.6 }}>
-                Built and deployed active web systems for district healthcare queues, wildlife
-                monitoring, and student club platforms.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* SKILLS SECTION */}
-        <section className="content-section" id="skills">
-          <div className="section-label-badge">Technical Stack</div>
-          <h2 className="section-heading">
-            Skills &amp; <span className="heading-blue">Technologies</span>
-          </h2>
-          <p className="section-subheading">
-            Technologies and tools I use to build scalable products.
-          </p>
-
-          <div className="skills-grid">
-            <div className="skill-category-card">
-              <h3 className="skill-category-title">
-                <Cpu size={18} color="#2563eb" />
-                Backend
-              </h3>
-              <div className="skill-tags">
-                <span className="skill-pill">Python</span>
-                <span className="skill-pill">Django</span>
-                <span className="skill-pill">Django REST</span>
-                <span className="skill-pill">FastAPI</span>
-                <span className="skill-pill">Node.js</span>
-                <span className="skill-pill">REST APIs</span>
-              </div>
-            </div>
-
-            <div className="skill-category-card">
-              <h3 className="skill-category-title">
-                <Layers size={18} color="#2563eb" />
-                Frontend
-              </h3>
-              <div className="skill-tags">
-                <span className="skill-pill">Next.js</span>
-                <span className="skill-pill">React.js</span>
-                <span className="skill-pill">TypeScript</span>
-                <span className="skill-pill">JavaScript</span>
-                <span className="skill-pill">HTML5 / CSS3</span>
-                <span className="skill-pill">Bootstrap</span>
-              </div>
-            </div>
-
-            <div className="skill-category-card">
-              <h3 className="skill-category-title">
-                <Database size={18} color="#2563eb" />
-                Databases &amp; Cloud
-              </h3>
-              <div className="skill-tags">
-                <span className="skill-pill">MySQL</span>
-                <span className="skill-pill">PostgreSQL</span>
-                <span className="skill-pill">Redis</span>
-                <span className="skill-pill">Neon DB</span>
-                <span className="skill-pill">Firebase</span>
-                <span className="skill-pill">Supabase</span>
-              </div>
-            </div>
-
-            <div className="skill-category-card">
-              <h3 className="skill-category-title">
-                <Wrench size={18} color="#2563eb" />
-                Tools &amp; Geospatial
-              </h3>
-              <div className="skill-tags">
-                <span className="skill-pill">Git &amp; GitHub</span>
-                <span className="skill-pill">Docker</span>
-                <span className="skill-pill">Geospatial GIS</span>
-                <span className="skill-pill">AI / ML APIs</span>
-                <span className="skill-pill">Postman</span>
-                <span className="skill-pill">Linux</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
-        <section className="content-section" id="contact">
-          <div className="section-label-badge">Get in Touch</div>
-          <h2 className="section-heading">
-            Let’s Build Something <span className="heading-blue">Remarkable</span>
-          </h2>
-          <p className="section-subheading">
-            I’m always open to discussing new projects, internship opportunities, or tech collabs.
+        {/* ========================================================================= */}
+        {/* SECTION 9: GET IN TOUCH / CONTACT (Bottom Right in Reference)             */}
+        {/* ========================================================================= */}
+        <section className="contact-section" id="contact">
+          <div className="section-pill">Get in Touch</div>
+          <h2 className="section-title">Let&apos;s Work Together</h2>
+          <p className="section-subtitle">
+            I&apos;m always open to discussing new opportunities, interesting projects or just talking about technology.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "36px",
-              marginTop: "32px",
-            }}
-          >
-            {/* Contact details */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <div className="skill-category-card">
-                <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                  <div className="info-icon-circle">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <span style={{ fontSize: "12px", color: "var(--text-muted)", display: "block" }}>Email</span>
-                    <span style={{ fontSize: "15px", fontWeight: 700 }}>rajwardhan.chawda@example.com</span>
-                  </div>
+          <div className="contact-2col-grid">
+            {/* Left Column: Contact info list with circular icons */}
+            <div className="contact-info-list">
+              {/* Email */}
+              <a href="mailto:rajwardhan.chawda@example.com" className="contact-info-card">
+                <div className="contact-info-icon-box">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <div className="contact-info-title">Email</div>
+                  <div className="contact-info-val">rajwardhan.chawda@example.com</div>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a href="tel:+919876543210" className="contact-info-card">
+                <div className="contact-info-icon-box">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <div className="contact-info-title">Phone</div>
+                  <div className="contact-info-val">+91 98765 43210</div>
+                </div>
+              </a>
+
+              {/* Location */}
+              <div className="contact-info-card">
+                <div className="contact-info-icon-box">
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <div className="contact-info-title">Location</div>
+                  <div className="contact-info-val">Indore, Madhya Pradesh</div>
                 </div>
               </div>
 
-              <div className="skill-category-card">
-                <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                  <div className="info-icon-circle">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <span style={{ fontSize: "12px", color: "var(--text-muted)", display: "block" }}>Location</span>
-                    <span style={{ fontSize: "15px", fontWeight: 700 }}>Indore, Madhya Pradesh, India</span>
-                  </div>
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com/in/rajwardhan-chawda"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-info-card"
+              >
+                <div className="contact-info-icon-box">
+                  <LinkedinIcon size={20} />
                 </div>
-              </div>
+                <div>
+                  <div className="contact-info-title">LinkedIn</div>
+                  <div className="contact-info-val">linkedin.com/in/rajwardhan-chawda</div>
+                </div>
+              </a>
 
-              <div className="skill-category-card">
-                <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                  <div className="info-icon-circle">
-                    <MessageCircle size={20} />
-                  </div>
-                  <div>
-                    <span style={{ fontSize: "12px", color: "var(--text-muted)", display: "block" }}>Direct WhatsApp</span>
-                    <a
-                      href="https://wa.me/919999999999"
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ fontSize: "15px", fontWeight: 700, color: "var(--accent-blue)", textDecoration: "none" }}
-                    >
-                      +91 (Direct Chat Link) &rarr;
-                    </a>
-                  </div>
+              {/* GitHub */}
+              <a
+                href="https://github.com/rajwardhan-chawda"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-info-card"
+              >
+                <div className="contact-info-icon-box">
+                  <GithubIcon size={20} />
                 </div>
-              </div>
+                <div>
+                  <div className="contact-info-title">GitHub</div>
+                  <div className="contact-info-val">github.com/rajwardhan-chawda</div>
+                </div>
+              </a>
             </div>
 
-            {/* Contact form */}
-            <form
-              onSubmit={handleContactSubmit}
-              className="skill-category-card"
-              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-            >
-              <h3 style={{ fontSize: "17px", fontWeight: 700 }}>Send a Message</h3>
+            {/* Right Column: Contact Form */}
+            <div className="contact-form-card">
+              <form onSubmit={handleContactSubmit}>
+                <div className="contact-inputs-row">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="contact-input-field"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="contact-input-field"
+                  />
+                </div>
 
-              <div>
-                <label style={{ fontSize: "12.5px", fontWeight: 600, color: "var(--text-secondary)", display: "block", marginBottom: "6px" }}>
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. John Doe"
-                  style={{
-                    width: "100%",
-                    padding: "10px 14px",
-                    borderRadius: "10px",
-                    border: "1px solid var(--border-color)",
-                    background: "var(--bg-primary)",
-                    color: "var(--text-primary)",
-                    fontSize: "14px",
-                    outline: "none",
-                  }}
-                />
-              </div>
-
-              <div>
-                <label style={{ fontSize: "12.5px", fontWeight: 600, color: "var(--text-secondary)", display: "block", marginBottom: "6px" }}>
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@example.com"
-                  style={{
-                    width: "100%",
-                    padding: "10px 14px",
-                    borderRadius: "10px",
-                    border: "1px solid var(--border-color)",
-                    background: "var(--bg-primary)",
-                    color: "var(--text-primary)",
-                    fontSize: "14px",
-                    outline: "none",
-                  }}
-                />
-              </div>
-
-              <div>
-                <label style={{ fontSize: "12.5px", fontWeight: 600, color: "var(--text-secondary)", display: "block", marginBottom: "6px" }}>
-                  Your Message
-                </label>
                 <textarea
                   required
-                  rows={4}
+                  placeholder="Your Message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell me about your project, idea or opportunity..."
-                  style={{
-                    width: "100%",
-                    padding: "10px 14px",
-                    borderRadius: "10px",
-                    border: "1px solid var(--border-color)",
-                    background: "var(--bg-primary)",
-                    color: "var(--text-primary)",
-                    fontSize: "14px",
-                    outline: "none",
-                    resize: "vertical",
-                  }}
+                  className="contact-textarea-field"
                 />
-              </div>
 
-              <button
-                type="submit"
-                className="btn-primary"
-                style={{ width: "100%", justifyContent: "center" }}
-              >
-                {contactSubmitted ? (
-                  <>
-                    <CheckCircle2 size={18} />
-                    <span>Message Sent Successfully!</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-            </form>
+                <button type="submit" className="btn-contact-send">
+                  {contactSubmitted ? (
+                    <>
+                      <Check size={18} />
+                      <span>Message Sent Successfully!</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <ArrowRight size={17} />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
           </div>
         </section>
       </main>
 
-      {/* FOOTER */}
+      {/* Footer */}
       <footer className="footer">
         <div className="container footer-inner">
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <div className="logo-badge" style={{ width: "32px", height: "32px" }}>
-              <span style={{ fontSize: "16px", fontWeight: 800, color: "var(--accent-blue)" }}>RC</span>
+              <span style={{ fontSize: "14px", fontWeight: 800, color: "var(--accent-blue)" }}>RC</span>
             </div>
             <div>
               <span style={{ fontWeight: 700, fontSize: "14px" }}>Rajwardhan Singh Chawda</span>
-              <span style={{ fontSize: "12px", color: "var(--text-muted)", display: "block" }}>Full-Stack Developer</span>
+              <span style={{ fontSize: "12px", color: "var(--text-muted)", display: "block" }}>
+                Full-Stack Developer | Backend Focus
+              </span>
             </div>
           </div>
 
           <div className="footer-copy">
-            &copy; 2026 Rajwardhan Singh Chawda. Built with Next.js.
+            &copy; 2026 Rajwardhan Singh Chawda. All rights reserved.
           </div>
 
           <div className="social-links" style={{ margin: 0 }}>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="social-icon-btn">
+            <a href="https://github.com/rajwardhan-chawda" target="_blank" rel="noreferrer" className="social-icon-btn">
               <GithubIcon size={16} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon-btn">
+            <a href="https://linkedin.com/in/rajwardhan-chawda" target="_blank" rel="noreferrer" className="social-icon-btn">
               <LinkedinIcon size={16} />
             </a>
-            <a href="https://wa.me/919999999999" target="_blank" rel="noreferrer" className="social-icon-btn">
-              <MessageCircle size={16} />
+            <a href="mailto:rajwardhan.chawda@example.com" className="social-icon-btn">
+              <Mail size={16} />
             </a>
           </div>
         </div>
       </footer>
-
-      {/* PROJECT DETAILS MODAL */}
-      {selectedProject && (
-        <div
-          className="modal-backdrop"
-          onClick={() => setSelectedProject(null)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="modal-close-btn"
-              onClick={() => setSelectedProject(null)}
-              aria-label="Close dialog"
-            >
-              <X size={18} />
-            </button>
-
-            <div style={{ position: "relative", width: "100%", height: "280px" }}>
-              <Image
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-
-            <div style={{ padding: "28px" }}>
-              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "12px" }}>
-                {selectedProject.tags.map((tag) => (
-                  <span key={tag} className="tag-badge">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <h2 style={{ fontSize: "24px", fontWeight: 800, marginBottom: "10px" }}>
-                {selectedProject.title}
-              </h2>
-
-              <p style={{ fontSize: "15px", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: "20px" }}>
-                {selectedProject.details.overview}
-              </p>
-
-              <h3 style={{ fontSize: "16px", fontWeight: 700, marginBottom: "10px" }}>
-                Key Technical Highlights:
-              </h3>
-              <ul style={{ paddingLeft: "20px", marginBottom: "24px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                {selectedProject.details.highlights.map((h, i) => (
-                  <li key={i} style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.5 }}>
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-                {selectedProject.details.live && (
-                  <a
-                    href={selectedProject.details.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-primary"
-                  >
-                    <span>Visit Live Application</span>
-                    <ExternalLink size={16} />
-                  </a>
-                )}
-                {selectedProject.details.github && (
-                  <a
-                    href={selectedProject.details.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-secondary"
-                  >
-                    <GithubIcon size={16} />
-                    <span>View GitHub Source</span>
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
